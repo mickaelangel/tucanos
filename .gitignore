@@ -1,0 +1,96 @@
+# Tucanos - Fichiers à exclure du Git
+
+# ========================================
+# Archives et Packages Offline
+# ========================================
+*.zip
+*.tar.gz
+*.tar.xz
+*.tar.bz2
+*.7z
+*.rar
+
+# Exception: garder petits fichiers de config si nécessaire
+!rust-toolchain.toml
+!Cargo.toml
+
+# ========================================
+# Dossiers de Packages Offline
+# ========================================
+rust-offline-package/
+cargo-vendor/
+tucanos-vendor*/
+suse-packages/
+suse-packages-optional/
+github-dependencies-offline/
+gcc-cpp-offline/
+
+# ========================================
+# Binaires et Compilations
+# ========================================
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+*.dylib
+target/
+debug/
+release/
+*.o
+
+# ========================================
+# RPM et Packages Système
+# ========================================
+*.rpm
+*.deb
+
+# ========================================
+# Duplications et Temporaires
+# ========================================
+Nouveau dossier/
+tucanos-complete-*/
+**/tucanos-complete-*
+temp/
+tmp/
+.tmp/
+
+# ========================================
+# Documents et Médias
+# ========================================
+*.docx
+*.doc
+*.pdf
+*.pptx
+
+# ========================================
+# IDE et Éditeurs
+# ========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ========================================
+# Logs et Cache
+# ========================================
+*.log
+*.cache
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# ========================================
+# Build
+# ========================================
+build/
+dist/
+*.egg-info/
+
+# ========================================
+# Git
+# ========================================
+.git/
