@@ -15,93 +15,92 @@ Tucanos est particulièrement adapté pour les simulations CFD, éléments finis
 
 📖 **Voir [DESCRIPTION_TUCANOS.md](DESCRIPTION_TUCANOS.md) pour une description complète.**
 
-## 📋 Description
+## 📋 Contenu du Dépôt
 
-Ce projet contient tous les outils et scripts nécessaires pour installer Tucanos sur un système SUSE 15 SP4 **sans connexion internet**. Le package inclut :
+Ce dépôt contient tous les **scripts, documentation et sources** nécessaires pour installer Tucanos sur SUSE 15 SP4 **sans connexion internet**.
 
-- ✅ **Tucanos** (sources complètes)
-- ✅ **Rust 1.89.0** (toolchain complet offline)
-- ✅ **Dépendances Rust vendorisées** (231 packages)
-- ✅ **Dépendances GitHub** (coupe, metis-rs, minimeshb)
-- ✅ **Sources make et gcc** (pour compilation)
-- ✅ **METIS et NLOPT** (optionnels, nécessitent g++)
+```
+tucanos/
+├── README.md                      # Ce fichier
+├── DESCRIPTION_TUCANOS.md         # Description détaillée de Tucanos
+├── .gitignore                     # Exclusions Git
+│
+├── docs/                          # 📚 Documentation complète
+│   ├── LIRE_MOI_INSTALLATION.md
+│   ├── RECAPITULATIF_FINAL.md
+│   ├── COMMENT_CA_MARCHE_VRAIMENT.md
+│   ├── GUIDE_FINAL_INSTALLATION_TUCANOS_SUSE15.md
+│   └── INSTALLATION_100_POURCENT_OFFLINE.md
+│
+├── scripts/                       # 🔧 Scripts d'installation
+│   ├── install_tucanos_offline.sh      # Script principal
+│   ├── install_metis.sh
+│   ├── install_nlopt.sh
+│   ├── creer_package_complet_tucanos.ps1
+│   └── autres scripts...
+│
+├── sources/                       # 💻 Code source Tucanos
+│   └── tucanos-main/
+│       ├── tucanos/              # Bibliothèque principale
+│       ├── tmesh/                # Opérations sur maillages
+│       ├── pytucanos/            # Bindings Python
+│       └── pytmesh/              # Bindings Python
+│
+└── config/                        # ⚙️ Configuration
+    └── rust-toolchain.toml
+```
 
 ## 🚀 Installation Rapide
 
-### Sur le serveur SUSE 15 SP4
+### Étape 1 : Créer le package offline (sur machine avec internet)
+
+Sur une machine Windows/Linux **avec internet**, exécutez :
+
+```powershell
+# Windows PowerShell
+cd scripts
+.\creer_package_complet_tucanos.ps1
+```
+
+Cela télécharge et crée le package complet `tucanos-complete-offline-final.zip` (~700 MB).
+
+### Étape 2 : Installer sur SUSE 15 SP4 (sans internet)
+
+Transférez le package ZIP sur votre serveur SUSE 15 SP4, puis :
 
 ```bash
-# 1. Extraire le package
+# Extraire le package
 unzip tucanos-complete-offline-final.zip
 cd tucanos-complete-offline-final
 
-# 2. Lancer l'installation (1 seule commande)
+# Lancer l'installation (1 seule commande)
 bash install_tucanos_offline.sh
 ```
 
 Le script installe automatiquement :
-- make (si nécessaire)
-- Rust (si nécessaire)
-- Tucanos (compilation 100% offline)
-- METIS et NLOPT (si g++ disponible)
+- ✅ make (si nécessaire)
+- ✅ Rust 1.89.0 (si nécessaire)
+- ✅ Tucanos (compilation 100% offline)
+- ✅ METIS et NLOPT (si g++ disponible)
 
-## 📁 Structure du Projet
+## 📦 Package Complet Inclut
 
-```
-tucanos/
-├── README.md                          # Ce fichier
-├── .gitignore                         # Exclusions Git
-│
-├── Nouveau dossier/                   # Dossier principal de travail
-│   ├── install_tucanos_offline.sh    # Script d'installation principal
-│   ├── LIRE_MOI_INSTALLATION.md      # Guide d'installation détaillé
-│   ├── RECAPITULATIF_FINAL.md        # Récapitulatif du package
-│   │
-│   ├── tucanos-main/                 # Sources Tucanos
-│   ├── cargo-vendor/                 # Dépendances Rust (.crate)
-│   ├── rust-offline-package/         # Toolchain Rust offline
-│   ├── suse-packages/                # Sources make et gcc
-│   └── suse-packages-optional/       # METIS et NLOPT
-│
-└── [scripts PowerShell]              # Scripts de création du package
-```
+Le package offline (non versionné dans Git) contient :
 
-## 📦 Création du Package Offline
-
-### Prérequis (sur machine Windows avec internet)
-
-- PowerShell
-- Git
-- ~2 GB d'espace disque
-
-### Étapes
-
-1. **Télécharger les dépendances Rust** :
-   ```powershell
-   cd "Nouveau dossier"
-   .\creer_package_complet_tucanos.ps1
-   ```
-
-2. **Créer l'archive finale** :
-   ```powershell
-   .\comprimer_package.ps1
-   ```
-
-3. **Transférer sur le serveur SUSE 15 SP4** :
-   - Via SCP : `scp tucanos-complete-offline-final.zip user@server:/home/user/`
-   - Via clé USB
-
-## 📚 Documentation
-
-- **[LIRE_MOI_INSTALLATION.md](Nouveau%20dossier/LIRE_MOI_INSTALLATION.md)** - Guide d'installation complet
-- **[RECAPITULATIF_FINAL.md](Nouveau%20dossier/RECAPITULATIF_FINAL.md)** - Récapitulatif technique
-- **[COMMENT_CA_MARCHE_VRAIMENT.md](Nouveau%20dossier/COMMENT_CA_MARCHE_VRAIMENT.md)** - Explication du système
+- ✅ **Tucanos** (sources complètes)
+- ✅ **Rust 1.89.0** (toolchain complet offline)
+- ✅ **Dépendances Rust vendorisées** (231 packages, ~302 MB)
+- ✅ **Dépendances GitHub** (coupe, metis-rs, minimeshb)
+- ✅ **Sources make et gcc** (pour compilation)
+- ✅ **METIS et NLOPT** (optionnels, nécessitent g++)
 
 ## ⚙️ Prérequis Système (SUSE 15 SP4)
 
 ### Obligatoires
 - ✅ **gcc** (normalement préinstallé)
 - ✅ **tar**, **gzip**, **unzip**
+- ✅ ~1 GB d'espace disque libre
+- ✅ ~2 GB de RAM pour la compilation
 
 ### Optionnels (pour METIS/NLOPT)
 - ⚠️ **g++** (gcc-c++) : `sudo zypper install gcc-c++`
@@ -112,10 +111,10 @@ tucanos/
 # Vérifier Tucanos
 ls -lh ~/.local/lib/libtucanos.so
 
-# Vérifier METIS
+# Vérifier METIS (optionnel)
 gpmetis --help
 
-# Vérifier NLOPT
+# Vérifier NLOPT (optionnel)
 pkg-config --modversion nlopt
 
 # Activer l'environnement
@@ -124,16 +123,18 @@ source ~/.bashrc
 
 ## 🔧 Fonctionnalités
 
-- ✅ **Installation 100% offline** - Aucune connexion internet requise
+- ✅ **Installation 100% offline** - Aucune connexion internet requise sur SUSE
 - ✅ **Installation sans sudo** - Tout installé dans `~/.local/`
 - ✅ **Détection automatique** - Détecte g++ pour METIS/NLOPT
 - ✅ **Scripts automatisés** - Installation en une seule commande
+- ✅ **Documentation complète** - Guides en français
 
-## 📊 Taille du Package
+## 📚 Documentation
 
-- **Archive compressée** : ~679-717 MB (ZIP)
-- **Package décompressé** : ~734 MB
-- **Contenu** : Sources + Toolchain + Dépendances + Scripts
+- **[docs/LIRE_MOI_INSTALLATION.md](docs/LIRE_MOI_INSTALLATION.md)** - Guide d'installation complet
+- **[docs/RECAPITULATIF_FINAL.md](docs/RECAPITULATIF_FINAL.md)** - Récapitulatif technique
+- **[docs/COMMENT_CA_MARCHE_VRAIMENT.md](docs/COMMENT_CA_MARCHE_VRAIMENT.md)** - Explication du système
+- **[DESCRIPTION_TUCANOS.md](DESCRIPTION_TUCANOS.md)** - Description détaillée de Tucanos
 
 ## 🛠️ Dépannage
 
@@ -143,21 +144,28 @@ source ~/.bashrc
 ### Erreur : "cargo build failed"
 **Causes possibles** :
 1. Espace disque insuffisant : `df -h`
-2. cargo-vendor incomplet : Vérifiez `ls -la cargo-vendor/`
+2. cargo-vendor incomplet : Vérifiez le package téléchargé
 
 ### Erreur : "Permission denied"
 **Solution** : N'utilisez PAS sudo avec le script d'installation.
 
 ## 📝 Notes Importantes
 
-- Le package **exclut** les gros fichiers (ZIP, vendor packages) du dépôt Git
-- Seuls les **scripts et la documentation** sont versionnés
-- Les packages complets doivent être créés localement avec les scripts PowerShell
+- ⚠️ Les **gros fichiers** (archives ZIP, vendor packages, binaires) sont **exclus du dépôt Git**
+- ✅ Seuls les **scripts et la documentation** sont versionnés
+- ✅ Le **package complet** doit être créé avec `creer_package_complet_tucanos.ps1`
+- ✅ Le dépôt Git reste **léger** (~50-100 MB) pour faciliter le clonage
+
+## 📊 Tailles
+
+- **Dépôt Git** : ~50-100 MB (scripts + docs + sources)
+- **Package offline complet** : ~679-717 MB (ZIP)
+- **Package décompressé** : ~734 MB
 
 ## 🔗 Liens Utiles
 
-- **Tucanos GitHub** : https://github.com/tucanos/tucanos
-- **Documentation officielle** : Voir les fichiers .md dans `Nouveau dossier/`
+- **Tucanos GitHub officiel** : https://github.com/tucanos/tucanos
+- **Ce dépôt** : https://github.com/mickaelangel/tucanos
 
 ## 📄 Licence
 
@@ -165,6 +173,6 @@ Voir les licences respectives de chaque composant (Tucanos, Rust, METIS, NLOPT).
 
 ---
 
-**Package généré pour installation offline complète sur SUSE 15 SP4** 🚀
+**Package d'installation offline pour Tucanos sur SUSE 15 SP4** 🚀
 
-
+*Créé pour faciliter le déploiement de Tucanos sur des systèmes sans connexion internet.*
