@@ -1,0 +1,22 @@
+﻿# Package HORS LIGNE Tucanos pour SUSE 15
+
+Date de crÃ©ation: 2025-10-02 14:17:14
+Configuration: METIS=True, NLOPT=True, Debug=False
+
+IMPORTANT: Ce package nÃ©cessite que les dÃ©pendances soient installÃ©es AVANT le transfert.
+
+PrÃ©requis Ã  installer AVANT le transfert:
+- gcc, gcc-c++, make, pkg-config
+- python3, python3-devel, python3-pip
+- rust (via rustup)
+- nlopt-devel (optionnel)
+- maturin (via pip)
+
+Instructions:
+1. Sur machine avec internet: ./prepare-for-offline.sh
+2. TransfÃ©rer le package sur SUSE 15 hors ligne
+3. Sur SUSE 15: ./check-prerequisites.sh
+4. Sur SUSE 15: ./build-tucanos-offline.sh
+5. Sur SUSE 15: cd tucanos-install && sudo ./install-system.sh && ./install-python.sh
+
+Documentation: README-OFFLINE.md

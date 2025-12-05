@@ -1,0 +1,295 @@
+================================================================================
+  COMMANDES GIT RAPIDES - Aide-mémoire
+================================================================================
+
+🚀 INITIALISATION (première fois seulement)
+================================================================================
+
+# Méthode automatique (RECOMMANDÉ)
+chmod +x init-git.sh
+./init-git.sh
+
+# OU méthode manuelle
+git init
+git config user.name "Votre Nom"
+git config user.email "votre.email@example.com"
+git add .
+git commit -m "Initial commit: Package Tucanos SUSE 15 SP4"
+git branch -M main
+
+================================================================================
+📤 POUSSER VERS UN DÉPÔT DISTANT
+================================================================================
+
+# Ajouter l'URL du dépôt distant (une seule fois)
+git remote add origin http://votre-git-local.com/tucanos-suse15.git
+
+# Pousser pour la première fois
+git push -u origin main
+
+# Pousser les commits suivants
+git push
+
+================================================================================
+💾 WORKFLOW QUOTIDIEN
+================================================================================
+
+# 1. Voir les fichiers modifiés
+git status
+
+# 2. Ajouter des fichiers spécifiques
+git add fichier1.sh fichier2.md
+
+# 3. Ou ajouter tout
+git add .
+
+# 4. Créer un commit
+git commit -m "Description des modifications"
+
+# 5. Pousser vers le serveur
+git push
+
+================================================================================
+📥 CLONER LE PROJET SUR UNE AUTRE MACHINE
+================================================================================
+
+# Cloner le dépôt
+git clone http://votre-git-local.com/tucanos-suse15.git
+
+# Entrer dans le dossier
+cd tucanos-suse15
+
+# Voir l'historique
+git log --oneline
+
+================================================================================
+🔍 COMMANDES DE VÉRIFICATION
+================================================================================
+
+# Voir l'historique
+git log
+git log --oneline --graph
+
+# Voir les différences
+git diff
+
+# Voir les différences d'un fichier
+git diff README.md
+
+# Voir les branches
+git branch -a
+
+# Voir les dépôts distants
+git remote -v
+
+# Voir le dernier commit
+git show
+
+================================================================================
+↩️  ANNULER DES MODIFICATIONS
+================================================================================
+
+# Annuler les modifications non commitées d'un fichier
+git checkout -- fichier.sh
+
+# Annuler toutes les modifications non commitées
+git checkout -- .
+
+# Annuler le dernier commit (garder les modifications)
+git reset --soft HEAD~1
+
+# Annuler le dernier commit (perdre les modifications)
+git reset --hard HEAD~1
+
+# Mettre de côté des modifications temporairement
+git stash
+git stash list
+git stash pop
+
+================================================================================
+🌳 BRANCHES
+================================================================================
+
+# Créer une nouvelle branche
+git checkout -b nouvelle-branche
+
+# Changer de branche
+git checkout main
+
+# Lister les branches
+git branch
+
+# Merger une branche dans main
+git checkout main
+git merge nouvelle-branche
+
+# Supprimer une branche
+git branch -d nouvelle-branche
+
+================================================================================
+🏷️  TAGS (versions)
+================================================================================
+
+# Créer un tag
+git tag -a v1.0 -m "Version 1.0"
+
+# Lister les tags
+git tag
+
+# Pousser les tags
+git push origin --tags
+
+# Checkout un tag spécifique
+git checkout v1.0
+
+================================================================================
+📊 STATISTIQUES
+================================================================================
+
+# Nombre de commits
+git rev-list --count HEAD
+
+# Taille du dépôt
+git count-objects -vH
+
+# Statistiques par contributeur
+git shortlog -sn
+
+# Fichiers les plus modifiés
+git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10
+
+================================================================================
+🔧 CONFIGURATION
+================================================================================
+
+# Voir toute la configuration
+git config --list
+
+# Configurer le nom d'utilisateur
+git config user.name "Votre Nom"
+
+# Configurer l'email
+git config user.email "votre.email@example.com"
+
+# Configurer l'éditeur
+git config core.editor nano
+
+# Configurer les couleurs
+git config --global color.ui auto
+
+================================================================================
+🗑️  NETTOYAGE
+================================================================================
+
+# Nettoyer les fichiers non trackés
+git clean -n   # Voir ce qui serait supprimé
+git clean -fd  # Supprimer
+
+# Nettoyer le dépôt
+git gc
+
+# Vérifier l'intégrité
+git fsck
+
+================================================================================
+📦 EXPORT
+================================================================================
+
+# Créer une archive du projet (sans .git)
+git archive --format=tar.gz --output=tucanos-export.tar.gz HEAD
+
+# Créer un bundle (avec historique)
+git bundle create tucanos.bundle --all
+
+================================================================================
+❓ AIDE
+================================================================================
+
+# Aide générale
+git help
+
+# Aide sur une commande spécifique
+git help commit
+git help push
+
+# Version courte
+git commit --help
+
+================================================================================
+🎯 CAS D'USAGE COURANTS
+================================================================================
+
+📝 Ajouter de nouveaux scripts
+──────────────────────────────
+git add nouveau-script.sh
+git commit -m "Ajout du script nouveau-script.sh"
+git push
+
+📝 Modifier la documentation
+──────────────────────────────
+git add README.md
+git commit -m "Mise à jour de la documentation"
+git push
+
+📝 Ajouter les dépendances téléchargées
+────────────────────────────────────────
+./prepare-complete-offline-package.sh
+git add dependencies/ vendor/
+git commit -m "Ajout des dépendances téléchargées"
+git push
+
+📝 Créer une release
+─────────────────────
+git tag -a v1.0 -m "Release v1.0 - Package complet SUSE 15 SP4"
+git push origin --tags
+
+📝 Travailler sur une amélioration
+───────────────────────────────────
+git checkout -b amelioration-installation
+# ... modifications ...
+git add .
+git commit -m "Amélioration du script d'installation"
+git checkout main
+git merge amelioration-installation
+git push
+
+================================================================================
+⚠️  ERREURS COURANTES
+================================================================================
+
+Erreur: "Permission denied (publickey)"
+→ Configurez l'authentification SSH ou utilisez HTTPS
+
+Erreur: "Updates were rejected because the tip of your current branch is behind"
+→ Faites git pull avant git push
+
+Erreur: "Please tell me who you are"
+→ Configurez user.name et user.email
+
+Erreur: "fatal: not a git repository"
+→ Vous n'êtes pas dans un dossier git, faites git init
+
+================================================================================
+📖 RESSOURCES
+================================================================================
+
+Documentation officielle Git:
+https://git-scm.com/doc
+
+Livre Pro Git (français):
+https://git-scm.com/book/fr/v2
+
+Aide locale:
+man git
+git help
+
+Documentation du projet:
+GIT-SETUP.md - Configuration complète avec exemples
+
+================================================================================
+
+Pour initialiser Git dans ce projet: ./init-git.sh
+
+================================================================================
+
+

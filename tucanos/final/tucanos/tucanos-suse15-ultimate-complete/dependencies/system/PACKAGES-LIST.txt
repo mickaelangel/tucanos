@@ -1,0 +1,12 @@
+Liste des packages RPM téléchargés pour SUSE 15 SP4
+Date: Wed 08 Oct 2025 03:51:55 PM CEST
+Nombre de packages: 6
+Taille totale: 52M
+
+Packages:
+-rw------- 1 christophe users 501K Oct  8 13:14 /home/christophe/Documents/tucanos/tucanos/tucanos-suse15-ultimate-complete/dependencies/system/apache2-mod_wsgi-python3-4.5.18-150000.4.6.1.x86_64.rpm
+-rw------- 1 christophe users 221K Oct  8 13:14 /home/christophe/Documents/tucanos/tucanos/tucanos-suse15-ultimate-complete/dependencies/system/bmake-20200606-150400.1.4.x86_64.rpm
+-rw------- 1 christophe users  51M Oct  8 13:14 /home/christophe/Documents/tucanos/tucanos/tucanos-suse15-ultimate-complete/dependencies/system/cross-aarch64-gcc7-7.5.0+r278197-4.30.1.x86_64.rpm
+-rw------- 1 christophe users 9.3K Oct  8 13:14 /home/christophe/Documents/tucanos/tucanos/tucanos-suse15-ultimate-complete/dependencies/system/gcc-c++-7-3.9.1.x86_64.rpm
+-rw------- 1 christophe users 162K Oct  8 13:14 /home/christophe/Documents/tucanos/tucanos/tucanos-suse15-ultimate-complete/dependencies/system/libsamba-policy-python3-devel-4.17.7+git.330.4057cd7a27a-150500.1.2.x86_64.rpm
+-rw------- 1 christophe users 232K Oct  8 13:14 /home/christophe/Documents/tucanos/tucanos/tucanos-suse15-ultimate-complete/dependencies/system/pkg-config-0.29.2-1.436.x86_64.rpm

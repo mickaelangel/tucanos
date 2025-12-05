@@ -1,0 +1,81 @@
+# Archives et packages complets
+*.zip
+*.tar.gz
+*.tar.xz
+*.tar.bz2
+*.7z
+*.rar
+
+# Packages offline complets (trop volumineux pour Git)
+tucanos-complete-offline-final/
+tucanos-complete-offline/
+tucanos-100-percent-offline/
+tucanos-suse15-package/
+tucanos-offline-installer/
+
+# Vendor packages (trop volumineux)
+cargo-vendor/
+cargo-vendor-complet/
+tucanos-vendor-COMPLET-FINAL/
+tucanos-vendor-complet/
+
+# Packages Rust offline
+rust-offline-package/*.tar.gz
+rust-offline-package/*.exe
+
+# Packages SUSE
+suse-packages/sources/
+suse-packages-optional/sources/
+gcc-cpp-offline/suse15-gcc-cpp-rpms/
+gcc-sources-offline/*.tar.*
+
+# Fichiers binaires
+*.exe
+*.so
+*.dll
+*.dylib
+*.a
+*.lib
+
+# Fichiers de build
+target/
+build/
+*.o
+*.obj
+*.pyc
+*.pyd
+*.egg-info/
+__pycache__/
+.cargo/
+
+# Fichiers temporaires et documents
+*.docx
+*.tmp
+*.log
+*.swp
+*.swo
+*~
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Fichiers de configuration locaux
+.vscode/
+.idea/
+*.code-workspace
+
+# Fichiers de maillage et résultats
+*.mesh
+*.meshb
+*.sol
+*.solb
+*.vtu
+*.geo
+*.h5
+
+# Lock files (optionnel - certains projets les incluent)
+# Cargo.lock
+
+

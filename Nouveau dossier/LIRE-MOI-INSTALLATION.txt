@@ -1,0 +1,192 @@
+================================================================================
+  PACKAGE TUCANOS - INSTALLATION HORS LIGNE POUR SUSE 15 SP4
+================================================================================
+
+Date de création : 2025-10-09
+Fichier : tucanos-suse15-offline-complete.tar.gz
+Taille : ~1-1.5 GB (compressé)
+
+================================================================================
+  INSTALLATION RAPIDE (3 ÉTAPES)
+================================================================================
+
+📦 ÉTAPE 1 : TRANSFÉRER SUR LE SERVEUR SUSE 15 SP4
+---------------------------------------------------
+
+Méthode 1 - Via SCP :
+  scp tucanos-suse15-offline-complete.tar.gz user@serveur:/tmp/
+
+Méthode 2 - Via USB :
+  Copier le fichier .tar.gz sur une clé USB
+  Transférer sur le serveur
+
+Méthode 3 - Réseau interne :
+  Utiliser un serveur FTP/HTTP temporaire
+
+
+🚀 ÉTAPE 2 : DÉCOMPRESSER ET INSTALLER
+---------------------------------------
+
+Sur le serveur SUSE 15 SP4 (hors ligne), exécuter :
+
+  cd /tmp
+  tar xzf tucanos-suse15-offline-complete.tar.gz
+  cd tucanos-suse15-ultimate-complete
+  chmod +x install-offline-suse15.sh
+  ./install-offline-suse15.sh
+
+⏱️  Durée estimée : 20-40 minutes
+
+Le script va automatiquement :
+  ✓ Installer 45 packages RPM système
+  ✓ Installer Rust 1.89.0 complet
+  ✓ Configurer cargo en mode offline
+  ✓ Installer les packages Python
+  ✓ Compiler METIS et NLOPT
+  ✓ Compiler Tucanos
+  ✓ Compiler pytmesh et pytucanos
+  ✓ Créer le package d'installation final
+
+
+✅ ÉTAPE 3 : FINALISER L'INSTALLATION
+--------------------------------------
+
+Après la fin du script :
+
+  cd tucanos-install
+  sudo ./install-system.sh      # Installation système
+  ./install-python.sh           # Installation Python
+  ./test-installation.sh        # Test
+
+Test rapide :
+  python3 -c "import pytmesh, pytucanos; print('✓ OK')"
+
+
+================================================================================
+  CONTENU DU PACKAGE
+================================================================================
+
+✓ Code source complet de Tucanos
+✓ 45 packages RPM système (gcc, python3, make, cmake, etc.)
+✓ Toolchain Rust 1.89.0 complète (558 MB)
+✓ 67 crates cargo (dépendances Rust)
+✓ 4 wheels Python (maturin, numpy, setuptools, wheel)
+✓ Sources externes (cmake 3.28.1, METIS, NLOPT 2.7.1)
+✓ Scripts d'installation automatisés
+✓ Documentation complète
+
+
+================================================================================
+  CONFIGURATION REQUISE
+================================================================================
+
+Système d'exploitation : SUSE Linux Enterprise Server 15 SP4
+Accès : Aucun (hors ligne complet)
+Espace disque requis : 10 GB minimum
+Droits : sudo (pour l'installation des RPM)
+Temps total : 30-80 minutes
+
+
+================================================================================
+  APRÈS L'INSTALLATION
+================================================================================
+
+Utilisation Python :
+  
+  import pytmesh
+  import pytucanos
+  
+  # Votre code ici
+
+Configuration PATH (optionnel) :
+  
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+  echo 'export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"' >> ~/.bashrc
+  source ~/.bashrc
+
+
+================================================================================
+  DOCUMENTATION DÉTAILLÉE
+================================================================================
+
+Une fois l'archive décompressée, consultez :
+
+  📖 INSTALLATION-HORS-LIGNE.md          Guide complet d'installation
+  📖 GUIDE-DEMARRAGE-RAPIDE.md           Démarrage rapide
+  📖 README-INSTALLATION-COMPLETE.md     Documentation complète
+  📖 SOMMAIRE-PACKAGE.txt                Résumé du package
+
+
+================================================================================
+  DÉPANNAGE RAPIDE
+================================================================================
+
+❌ Problème : "Permission denied"
+   → Certaines étapes nécessitent sudo
+
+❌ Problème : "maturin: command not found"
+   → export PATH="$HOME/.local/bin:$PATH"
+
+❌ Problème : "gcc not found"
+   → Vérifier : rpm -qa | grep gcc
+
+❌ Problème : Import Python échoue
+   → cd tucanos-install && ./install-python.sh
+
+Pour plus de détails, consultez INSTALLATION-HORS-LIGNE.md
+
+
+================================================================================
+  SUPPORT
+================================================================================
+
+Documentation locale : Fichiers README*.md dans l'archive
+Logs en cas d'erreur :
+  - build.log (compilation Tucanos)
+  - pytmesh-build.log (compilation pytmesh)
+  - pytucanos-build.log (compilation pytucanos)
+
+
+================================================================================
+  RÉSUMÉ DES COMMANDES
+================================================================================
+
+# Sur le serveur SUSE 15 SP4 (hors ligne)
+
+tar xzf tucanos-suse15-offline-complete.tar.gz
+cd tucanos-suse15-ultimate-complete
+chmod +x install-offline-suse15.sh
+./install-offline-suse15.sh
+cd tucanos-install
+sudo ./install-system.sh
+./install-python.sh
+./test-installation.sh
+
+
+================================================================================
+  INFORMATIONS
+================================================================================
+
+Version : SUSE 15 SP4 Complete Offline Package
+Date : 2025-10-09
+Rust : 1.89.0
+Python : 3.x (fourni par SUSE 15)
+Licence : LGPL-2.1
+
+Fonctionnalités incluses :
+  ✓ Support METIS (partitionnement de maillage)
+  ✓ Support NLOPT (optimisation)
+  ✓ Interface FFI C
+  ✓ Bindings Python complets
+  ✓ Installation 100% hors ligne
+
+
+================================================================================
+
+Bonne installation ! 🚀
+
+Pour toute question, consultez la documentation complète dans l'archive.
+
+================================================================================
+
+

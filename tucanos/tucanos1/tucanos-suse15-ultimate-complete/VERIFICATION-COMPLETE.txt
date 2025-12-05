@@ -1,0 +1,24 @@
+﻿# Package COMPLET HORS LIGNE Tucanos pour SUSE 15
+
+Date de crÃ©ation: 2025-10-02 14:20:56
+Configuration: METIS=True, NLOPT=True, Debug=False
+
+CONTENU INCLUS:
+- Code source complet de Tucanos
+- Rust portable (rustup-init)
+- Packages Python (maturin, setuptools, wheel, pyo3, numpy)
+- Scripts d'installation complets
+- Documentation dÃ©taillÃ©e
+
+DÃ‰PENDANCES Ã€ TÃ‰LÃ‰CHARGER MANUELLEMENT:
+- Packages RPM SUSE (gcc, python3, nlopt-devel, etc.)
+- Placer dans dependencies/system/
+
+WORKFLOW:
+1. Sur machine avec internet: ./download-dependencies.sh
+2. TÃ©lÃ©charger packages RPM manuellement
+3. TransfÃ©rer sur SUSE 15
+4. Sur SUSE 15: ./install-complete-offline.sh
+5. Sur SUSE 15: cd tucanos-install && sudo ./install-system.sh && ./install-python.sh
+
+Documentation: README-COMPLETE-OFFLINE.md

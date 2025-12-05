@@ -1,0 +1,200 @@
+================================================================================
+  AIDE RAPIDE : Problème de téléchargement RPM et NLOPT
+================================================================================
+
+VOUS AVEZ DIT : "Je n'arrive pas à télécharger les packages RPM et nlopt"
+
+================================================================================
+  SOLUTIONS CRÉÉES POUR VOUS
+================================================================================
+
+✅ 1. download-rpm-alternative.sh
+      └─ Script avec 4 méthodes différentes de téléchargement
+      └─ Inclut téléchargement manuel et installation minimale
+
+✅ 2. compile-nlopt-from-source.sh
+      └─ Compile NLOPT depuis les sources (déjà incluses)
+      └─ Installation locale (pas besoin de sudo)
+
+✅ 3. SOLUTIONS-TELECHARGEMENT-RPM.md
+      └─ Guide complet avec toutes les solutions possibles
+      └─ Cas d'usage pratiques
+      └─ Instructions détaillées
+
+================================================================================
+  ACTION IMMÉDIATE : QUE FAIRE MAINTENANT ?
+================================================================================
+
+🔵 ÉTAPE 1 : Essayez le script alternatif
+
+   chmod +x download-rpm-alternative.sh
+   ./download-rpm-alternative.sh
+
+   Choisissez une option selon votre situation :
+   - Option 1 : Si vous êtes sur SUSE avec zypper
+   - Option 2 : Si vous avez wget
+   - Option 3 : Pour une liste de téléchargement manuel
+   - Option 4 : Si vous préférez l'installation minimale
+
+🟢 ÉTAPE 2 : Pour NLOPT, deux options
+
+   Option A - Compiler plus tard (sur la machine cible) :
+   ✓ Rien à faire maintenant
+   ✓ L'archive nlopt-2.7.1.tar.gz est déjà dans dependencies/sources/
+   ✓ Sur la machine cible, exécutez : ./compile-nlopt-from-source.sh
+
+   Option B - Désactiver NLOPT :
+   ✓ Éditez install-complete-offline-improved.sh
+   ✓ Ligne ~200, changez : USE_NLOPT=false
+
+================================================================================
+  SI VOUS ÊTES SUR UBUNTU/DEBIAN (pas SUSE)
+================================================================================
+
+C'est NORMAL que zypper ne fonctionne pas !
+
+Solution : Téléchargement manuel
+
+1. Exécutez :
+   ./download-rpm-alternative.sh
+   # Choisissez option 3
+
+2. Ouvrez votre navigateur :
+   https://download.opensuse.org/distribution/leap/15.4/repo/oss/x86_64/
+
+3. Consultez la liste des packages :
+   cat dependencies/system/PACKAGES-TO-DOWNLOAD.txt
+
+4. Téléchargez chaque .rpm manuellement (Ctrl+F pour chercher)
+
+5. Déplacez tous les .rpm :
+   mv ~/Downloads/*.rpm dependencies/system/
+
+================================================================================
+  SI VOUS ÊTES SUR SUSE MAIS zypper NE FONCTIONNE PAS
+================================================================================
+
+Vérifiez la configuration des dépôts :
+
+   sudo zypper lr          # Lister les dépôts
+   sudo zypper ref         # Rafraîchir
+
+Si pas de dépôts configurés, ajoutez OpenSUSE Leap 15.4 :
+
+   sudo zypper ar https://download.opensuse.org/distribution/leap/15.4/repo/oss/ oss
+
+Puis réessayez :
+   ./download-rpm-alternative.sh
+
+================================================================================
+  SOLUTION MINIMALE (Si tout échoue)
+================================================================================
+
+Vous pouvez quand même installer Tucanos !
+
+Sur la machine SUSE 15 SP4 cible :
+
+1. Assurez-vous que ces packages sont installés :
+   
+   sudo zypper install gcc gcc-c++ make python3 python3-devel python3-pip
+
+2. Transférez uniquement :
+   - Code source Tucanos ✓
+   - dependencies/rust/ (Rust) ✓
+   - vendor/ (crates Cargo) ✓
+   - dependencies/python/ (wheels Python) ✓
+   - dependencies/sources/ (pour compiler NLOPT)
+
+3. Installez avec :
+   ./install-complete-offline-improved.sh
+
+Le script détectera les outils disponibles et compilera avec ce qui est présent.
+
+================================================================================
+  POUR NLOPT SPÉCIFIQUEMENT
+================================================================================
+
+NLOPT n'existe PAS dans les dépôts SUSE standard.
+
+➜ Solution : Le compiler depuis les sources
+
+L'archive est DÉJÀ PRÉSENTE : dependencies/sources/nlopt-2.7.1.tar.gz
+
+Sur la machine cible (SUSE 15 SP4), exécutez :
+
+   chmod +x compile-nlopt-from-source.sh
+   ./compile-nlopt-from-source.sh
+
+Ce script :
+✓ Extrait l'archive
+✓ Configure avec cmake
+✓ Compile
+✓ Installe dans ~/.local (pas besoin de sudo)
+✓ Crée le fichier pkg-config
+
+Durée : 5-10 minutes
+
+Si vous ne voulez pas NLOPT, désactivez-le simplement dans le script
+d'installation (voir SOLUTIONS-TELECHARGEMENT-RPM.md)
+
+================================================================================
+  COMMANDES POUR VÉRIFIER
+================================================================================
+
+# Combien de RPM avez-vous actuellement ?
+ls dependencies/system/*.rpm 2>/dev/null | wc -l
+
+# Rust est-il présent ?
+ls dependencies/rust/rustup-init
+
+# Vendor cargo est-il présent ?
+ls -d vendor/*/ 2>/dev/null | head -5
+
+# NLOPT source est-elle présente ?
+ls dependencies/sources/nlopt-2.7.1.tar.gz
+
+================================================================================
+  FICHIERS À CONSULTER
+================================================================================
+
+📘 SOLUTIONS-TELECHARGEMENT-RPM.md
+   └─ Guide COMPLET avec toutes les solutions
+   └─ Cas d'usage pratiques
+   └─ Instructions pas à pas
+
+📘 README-INSTALLATION-COMPLETE.md
+   └─ Section Dépannage complète
+
+📘 GUIDE-DEMARRAGE-RAPIDE.md
+   └─ Installation rapide
+
+================================================================================
+  RÉSUMÉ
+================================================================================
+
+POUR LES RPM :
+1. Essayez ./download-rpm-alternative.sh
+2. Si échec : téléchargement manuel via navigateur
+3. Si échec total : installation minimale (packages déjà sur la cible)
+
+POUR NLOPT :
+1. Compilez sur la machine cible avec ./compile-nlopt-from-source.sh
+2. OU désactivez NLOPT dans le script
+
+IMPORTANT :
+Vous POUVEZ installer Tucanos même sans tous les RPM !
+Le minimum requis : gcc, g++, make, python3, python3-devel
+
+================================================================================
+
+Commencez par : ./download-rpm-alternative.sh
+
+Consultez : SOLUTIONS-TELECHARGEMENT-RPM.md pour plus de détails
+
+================================================================================
+
+
+
+
+
+

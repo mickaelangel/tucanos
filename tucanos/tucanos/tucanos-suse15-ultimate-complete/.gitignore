@@ -1,0 +1,102 @@
+# Fichiers de build et compilation
+target/
+build/
+build-*/
+*.o
+*.so
+*.a
+*.dylib
+*.dll
+*.exe
+
+# Rust
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.whl
+.eggs/
+*.egg
+
+# Environnements virtuels Python
+venv/
+env/
+ENV/
+temp_env/
+
+# Vendor Cargo (très volumineux - à régénérer)
+# Décommentez la ligne suivante si vendor/ est trop volumineux pour votre git
+# vendor/
+
+# Fichiers temporaires
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDEs et éditeurs
+.vscode/
+.idea/
+*.sublime-*
+.project
+.classpath
+.settings/
+
+# Fichiers générés automatiquement
+PACKAGE-READY.txt
+tucanos-install/
+build-nlopt/
+
+# Archives temporaires
+*.tar.gz.tmp
+*.zip.tmp
+
+# Cache
+.cache/
+*.cache
+
+# Dossiers de téléchargement temporaires (si vous utilisez les scripts)
+# Décommentez si vous ne voulez pas versionner les dépendances téléchargées
+# dependencies/system/*.rpm
+# dependencies/rust/rust-toolchain-*.tar.gz
+# dependencies/rust/cargo-vendor.tar.gz
+
+# Fichiers de backup
+*.bak
+*.backup
+
+# Fichiers spécifiques Windows
+desktop.ini
+$RECYCLE.BIN/
+
+# Fichiers spécifiques Linux
+.Trash-*/
+
+# Node modules (si jamais utilisé)
+node_modules/
+
+# Documentation générée
+site/
+_site/
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Rustup et Cargo home temporaires
+temp_rustup/
+temp_cargo/
