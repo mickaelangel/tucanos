@@ -52,29 +52,46 @@ tucanos/
 
 ## 🚀 Installation Rapide
 
-### Étape 1 : Créer le package offline (sur machine avec internet)
+### Option 1 : Installation depuis Git (Recommandée)
 
-Sur une machine Windows/Linux **avec internet**, exécutez :
+```bash
+# 1. Cloner le dépôt
+git clone https://github.com/mickaelangel/tucanos.git
+cd tucanos
+
+# 2. Installation par défaut (dans ~/.local/)
+bash scripts/install_tucanos_custom.sh
+
+# 3. OU installation personnalisée (choisir le dossier)
+PREFIX=/opt/tucanos bash scripts/install_tucanos_custom.sh
+PREFIX=$HOME/mes-apps/tucanos bash scripts/install_tucanos_custom.sh
+```
+
+📖 **Guide complet** : [docs/INSTALLATION_DEPUIS_GIT.md](docs/INSTALLATION_DEPUIS_GIT.md)
+
+### Option 2 : Package Offline Complet (pour systèmes sans internet)
+
+**Étape 1** : Créer le package sur machine avec internet
 
 ```powershell
 # Windows PowerShell
-cd scripts
+git clone https://github.com/mickaelangel/tucanos.git
+cd tucanos/scripts
 .\creer_package_complet_tucanos.ps1
 ```
 
-Cela télécharge et crée le package complet `tucanos-complete-offline-final.zip` (~700 MB).
-
-### Étape 2 : Installer sur SUSE 15 SP4 (sans internet)
-
-Transférez le package ZIP sur votre serveur SUSE 15 SP4, puis :
+**Étape 2** : Transférer et installer sur SUSE 15 SP4
 
 ```bash
-# Extraire le package
+# Extraire et installer
 unzip tucanos-complete-offline-final.zip
 cd tucanos-complete-offline-final
 
-# Lancer l'installation (1 seule commande)
+# Installation par défaut (~/.local/)
 bash install_tucanos_offline.sh
+
+# OU installation personnalisée
+PREFIX=/opt/tucanos bash install_tucanos_custom.sh
 ```
 
 Le script installe automatiquement :
